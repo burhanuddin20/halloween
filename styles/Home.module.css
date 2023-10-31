@@ -1,145 +1,157 @@
-.container {
-  width: 100%;
-  max-width: 1440px;
-  padding: 0 1rem;
-  margin: 0 auto;
-}
-
-.gradientText0 {
-  background: -webkit-linear-gradient(#bfa3da, #84309c, #c735b0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradientText1 {
-  background: -webkit-linear-gradient(#a79af9, #7aa8d2);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradientText2 {
-  background: -webkit-linear-gradient(#bfa3da, #743f93);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradientText3 {
-  background: -webkit-linear-gradient(#c35ab1, #e9a8d9);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-  text-decoration-color: #84309c;
-}
-
-.title {
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
-  text-align: left;
-}
-
-.connect {
-  margin-bottom: 2rem;
-}
-
-.description {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #555;
-  border-radius: 5px;
-  padding: 0.5em;
-  font-size: 1.1rem;
-}
-
-.grid {
+.navbar {
   display: flex;
-  justify-content: left;
-  flex-wrap: wrap;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: #a11c1c;
+  background-color: black;
 }
-
-.card {
-  background-color: #131313;
-  text-align: left;
-  color: inherit;
+.navLinks {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+}
+.navLinks a {
+  color: greenyellow;
+  margin: 0px 10px;
   text-decoration: none;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 440px;
-  overflow: none;
-  border: none;
-}
-
-.cardText {
-  padding: 1rem;
-}
-
-.card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 4px 4px 0 0;
-  margin-bottom: 12px;
-  border: none;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  background-color: #272c34;
-  opacity: 80%;
-}
-
-.card h2 {
-  margin: 0 0 0.75rem 0;
-}
-
-.card p {
-  margin: 0;
   font-size: 1rem;
-  line-height: 1.75;
+  transition: all 0.3s ease 0s;
+}
+.navLinks a:hover {
+  color: #0ea5e9;
+}
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 1rem;
+  border: #0ea5e9 solid 2px;
+  transition: all 0.3s ease 0s;
+}
+.avatar:hover {
+  border: skyblue solid 2px;
+  cursor: pointer;
+}
+.profileDropdown {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  width: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
+.connectWalletBtn {
+  background-color: #0ea5e9 !important;
 }
 
-@media (max-width: 768px) {
-  .header {
-    margin-left: 0;
+.appContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* This will take the full height of the viewport */
+  width: 100vw; /* This will take the full width of the viewport */
+  background-color: black; 
+}
+
+.contentCenter {
+  text-align: center;
+}
+
+.bigButton {
+  padding: 15px 30px; /* Increasing padding to make the button bigger */
+  font-size: 1.5em; /* Increasing font size */
+  border: none; /* Removing the default border */
+  border-radius: 5px; /* Adding some rounded corners */
+  cursor: pointer; /* To show it's clickable */
+  background-color: black; /* Button color */
+  color: greenyellow; /* Button text color */
+  transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.bigButton:hover {
+  background-color: rgb(45, 44, 44); /* Darker shade for hover */
+}
+
+.bigButton:disabled {
+  background-color: #7b8a8b; /* Grey out when disabled */
+  cursor: not-allowed;
+}
+
+.textPopUpTop {
+  color: red;
+  font-size: 10rem;
+  padding: 0%;
+  position: relative;
+  z-index: 1;
+  margin-top: 12%;
+  margin-bottom: 0%;
+	animation: textPopUpTop 0.5s cubic-bezier(0.600, -0.280, 0.735, 0.045) forwards, flicker1 2s linear infinite 0.5s;
+}
+
+@keyframes textPopUpTop {
+  0%, 40% {
+    transform: translateY(0);
+    text-shadow: none;
   }
-  .grid {
-    width: 100%;
-    flex-direction: column;
+  70% {
+    transform: translateY(-30px);
+    text-shadow: none;
   }
-  .title {
-    font-size: 3rem;
-    line-height: 1.15;
+  100% {
+    transform: translateY(-50px);
+    text-shadow: 0 1px 0 #a11c1c, 0 2px 0 #a11c1c, 0 3px 0 #a11c1c, 0 4px 0 #a11c1c, 0 5px 0 #a11c1c, 0 6px 0 #a11c1c, 0 7px 0 #cccccc, 0 8px 0 #cccccc, 0 9px 0 #a11c1c, 0 50px 30px rgba(0, 0, 0, 0.3);
   }
 }
 
-.card,
-.footer {
-  border-color: #222;
+@keyframes flicker1 {
+  0%, 100% {
+    opacity: 1;
+  }
+  41.99%, 43.01%, 47.99%, 49.01% {
+    opacity: 1;
+  }
+  42%, 43%, 48%, 49% {
+    opacity: 0;
+  }
 }
-.logo img {
-  filter: invert(1);
+
+.wobbleHorBottom{
+	animation: wobbleHorBottom 1.5s infinite both;
+}
+
+
+ @keyframes wobbleHorBottom {
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    transform: translateX(-6px) rotate(-1.2deg);
+  }
+}
+
+.explanationText {
+  color: #FFF; 
+  font-size: 1.5rem; 
+  text-align: center; 
+  margin-top: -10%;
+
 }

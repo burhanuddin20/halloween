@@ -1,109 +1,66 @@
-import { ConnectWallet } from "@thirdweb-dev/react";
+
+import React, { useState } from "react";
+import { useContract, useContractWrite,useBalance } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
-import Image from "next/image";
-import { NextPage } from "next";
+import { ethers } from 'ethers';
+import {TokenAddress,ContractAddress} from "../const/addresses";
 
-const Home: NextPage = () => {
-  return (
-    <main className={styles.main}>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>
-            Welcome to{" "}
-            <span className={styles.gradientText0}>
-              <a
-                href="https://thirdweb.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                thirdweb.
-              </a>
-            </span>
-          </h1>
+const TotalSupply = 100000;
 
-          <p className={styles.description}>
-            Get started by configuring your desired network in{" "}
-            <code className={styles.code}>src/index.js</code>, then modify the{" "}
-            <code className={styles.code}>src/App.js</code> file!
-          </p>
+function App() {
+    const { contract:tokenContract } = useContract(TokenAddress);
+    const { mutateAsync: transferMatic,isLoading } = useContractWrite(tokenContract, "transfer");
+    const [status, setStatus] = useState('initial'); // 'initial', 'sending', 'received'
 
-          <div className={styles.connect}>
-            <ConnectWallet
-              dropdownPosition={{
-                side: "bottom",
-                align: "center",
-              }}
-            />
-          </div>
-        </div>
+    const sendMatic = async () => {
+        setStatus('sending');
+        const amountToSend = 0.1; // for example, 0.1 MATIC
+        const ethers = require('ethers');
+        const amountInWei = ethers.utils.parseEther('0.1');  // Convert 0.1 matic to wei
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        try{
+            await signer.sendTransaction({
+                to: ContractAddress,
+                value: amountInWei
+            });
+            setStatus('received');
+            //after 5 seconds, reset the status
+            setTimeout(() => {
+                setStatus('initial');
+            }, 5000);
+        }catch(error){
+            console.log('Error sending MATIC', error);
+            setStatus('initial');
+        }
+    };
 
-        <div className={styles.grid}>
-          <a
-            href="https://portal.thirdweb.com/"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/images/portal-preview.png"
-              alt="Placeholder preview of starter"
-              width={300}
-              height={200}
-            />
-            <div className={styles.cardText}>
-              <h2 className={styles.gradientText1}>Portal ➜</h2>
-              <p>
-                Guides, references, and resources that will help you build with
-                thirdweb.
-              </p>
-            </div>
-          </a>
-
-          <a
-            href="https://thirdweb.com/dashboard"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/images/dashboard-preview.png"
-              alt="Placeholder preview of starter"
-              width={300}
-              height={200}
-            />
-            <div className={styles.cardText}>
-              <h2 className={styles.gradientText2}>Dashboard ➜</h2>
-              <p>
-                Deploy, configure, and manage your smart contracts from the
-                dashboard.
-              </p>
-            </div>
-          </a>
-
-          <a
-            href="https://thirdweb.com/templates"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/images/templates-preview.png"
-              alt="Placeholder preview of templates"
-              width={300}
-              height={200}
-            />
-            <div className={styles.cardText}>
-              <h2 className={styles.gradientText3}>Templates ➜</h2>
-              <p>
-                Discover and clone template projects showcasing thirdweb
-                features.
-              </p>
-            </div>
-          </a>
-        </div>
+    return (
+      <div className={styles.appContainer}>
+      <div className={styles.contentCenter}>
+        <p className={styles.explanationText}>
+        Welcome to our Halloween Special Project! By sending MATIC, you participate in our "Trick or Treat" game.
+        </p>
+        <p className={styles.addresses}>
+        Smart Contract: <a href="url">{ContractAddress}</a>
+        </p>
+        <p className={styles.addresses}>
+        Token Contract: <a href="url">{TokenAddress}</a>
+        </p>
+          <h1 className = {`${styles.textPopUpTop} ${styles.flicker1}`}>Trick or Treat</h1>
+          <p> Send 0.1 MATIC or more to get a treat!</p>
+          <p>Recieve up to 200,000 $PMPTKNS!</p>
+          {status === 'initial' &&(
+             <button className={`${styles.bigButton} ${styles.wobbleHorBottom}`} onClick={sendMatic} disabled={isLoading}>
+             Send MATIC
+            </button>
+          )}
+          {status == 'sending' && <p> Sending MATIC.... Approve in your wallet</p>}
+          {status == 'received' && <p> Tokens recieved!!! Check your wallet for your tokens.</p>}
       </div>
-    </main>
-  );
-};
+  </div>
+    );
+}
 
-export default Home;
+export default App;
+
