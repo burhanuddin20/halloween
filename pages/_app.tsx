@@ -21,11 +21,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     </ThirdwebProvider>
   );
 }
-function Component() {
-  const CONTRACT_ADDRESS = "0x847560198Eafa1df1790e63Fd5d919324A213907";
-  // Might need to specify the ABI here
-  const { contract, isLoading } = useContract(CONTRACT_ADDRESS);
-}
 
 export default MyApp;
 
