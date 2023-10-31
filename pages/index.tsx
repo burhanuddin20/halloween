@@ -41,7 +41,7 @@ function App() {
       <div className={styles.appContainer}>
       <div className={styles.contentCenter}>
         <p className={styles.explanationText}>
-        Welcome to our Halloween Special Project! By sending MATIC, you participate in our "Trick or Treat" game.
+        Welcome to our Halloween Special Project! By sending MATIC, you participate in our Trick or Treat game.
         </p>
         <p className={styles.addresses}>
         Smart Contract: <a href="url">{ContractAddress}</a>
