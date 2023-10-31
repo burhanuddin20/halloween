@@ -7,7 +7,7 @@ interface IERC20 {
     function balanceOf(address account) external view returns (uint256);
 }
 
-contract TokenDistributorV3 {
+contract TokenDistributorV31 {
     address payable public owner;
     IERC20 public token;
 
@@ -16,13 +16,16 @@ contract TokenDistributorV3 {
         token = IERC20(_token);
     }
 
-    // Generate a pseudo-random number
+    uint8 public constant decimals = 18;
+    uint256 public constant DECIMALS_MULTIPLIER = 10**decimals;
+
+    // Generate a pseudo-random number between 100 and 300,000
     function random() private view returns (uint256) {
-        if (token.balanceOf(address(this)) < 5000000) {
-            return uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp, token.balanceOf(address(this))))) % 20000;
-        }  
-        return uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp, token.balanceOf(address(this))))) % 300000;    
+        uint256 randomness = uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp, token.balanceOf(address(this)))));
+        uint256 scaled = (randomness % 299901) + 100;  // scaled to [100, 300000]
+        return scaled * DECIMALS_MULTIPLIER;  // scale by decimals
     }
+
 
     // This function is called whenever someone sends MATIC to the contract
     receive() external payable {
