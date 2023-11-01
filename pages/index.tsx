@@ -44,7 +44,7 @@ function App() {
         Welcome to our Halloween Special Project! By sending MATIC, you participate in our Trick or Treat game.
         </p>
         <p className={styles.addresses}>
-        Smart Contract: <a href="url">{ContractAddress}</a>
+        Smart Contract: <a href="https://polygonscan.com/address/0xD62f9EBE736793B6d983529cE91e8CE51E73126C">{ContractAddress}</a>
         </p>
         <p className={styles.addresses}>
         Token Contract: <a href="https://polygonscan.com/address/0x6318eDc782756A9497A4113bEF82AcCf4a693731">{TokenAddress}</a>
