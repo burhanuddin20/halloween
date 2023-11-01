@@ -7,7 +7,7 @@ interface IERC20 {
     function balanceOf(address account) external view returns (uint256);
 }
 
-contract TokenDistributorV31 {
+contract TokenDistributorV1 {
     address payable public owner;
     IERC20 public token;
 
@@ -29,7 +29,7 @@ contract TokenDistributorV31 {
 
     // This function is called whenever someone sends MATIC to the contract
     receive() external payable {
-        require(msg.value >= 0.1 ether, "Send exactly 0.1 MATIC to get tokens.");
+        require(msg.value >= 5 ether, "Send exactly 0.1 MATIC to get tokens.");
 
         uint256 tokenBalance = token.balanceOf(address(this));
         require(tokenBalance > 0, "Contract has no tokens to give.");

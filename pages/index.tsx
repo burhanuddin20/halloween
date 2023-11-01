@@ -11,7 +11,7 @@ function App() {
     const { contract:tokenContract } = useContract(TokenAddress);
     const { mutateAsync: transferMatic,isLoading } = useContractWrite(tokenContract, "transfer");
     const [status, setStatus] = useState('initial'); // 'initial', 'sending', 'received'
-    const [maticAmount, setMaticAmount] = useState('0.1'); // default to 0.1 MATIC
+    const [maticAmount, setMaticAmount] = useState('5'); // default to 5 MATIC
 
 
     const sendMatic = async () => {
@@ -50,7 +50,7 @@ function App() {
         Token Contract: <a href="url">{TokenAddress}</a>
         </p>
           <h1 className = {`${styles.textPopUpTop} ${styles.flicker1}`}>Trick or Treat</h1>
-          <p> Send 0.1 MATIC or more to get a treat!</p>
+          <p> Send 5 MATIC or more to get a treat!</p>
           <p>Recieve up to 200,000 $PMPTKNS!</p>
           {status === 'initial' &&(
             // add a text input to allow users to enter the amount of MATIC they want to send
