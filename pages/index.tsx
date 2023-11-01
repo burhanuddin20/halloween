@@ -47,7 +47,7 @@ function App() {
         Smart Contract: <a href="url">{ContractAddress}</a>
         </p>
         <p className={styles.addresses}>
-        Token Contract: <a href="url">{TokenAddress}</a>
+        Token Contract: <a href="https://polygonscan.com/address/0x6318eDc782756A9497A4113bEF82AcCf4a693731">{TokenAddress}</a>
         </p>
           <h1 className = {`${styles.textPopUpTop} ${styles.flicker1}`}>Trick or Treat</h1>
           <p> Send 5 MATIC or more to get a treat!</p>
